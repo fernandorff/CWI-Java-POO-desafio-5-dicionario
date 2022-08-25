@@ -28,7 +28,18 @@ public class DicionarioTest {
         dicionario.adicionarPalavra("Carro", "Car", Dicionario.TipoDicionario.INGLES);
         dicionario.adicionarPalavra("Livro", "Book", Dicionario.TipoDicionario.INGLES);
 
-        dicionario.traduzir("aivro", Dicionario.TipoDicionario.INGLES);
+        dicionario.traduzir("Bola", Dicionario.TipoDicionario.INGLES);
+
+    }
+
+    @Test(expected = PalavraNaoEncontradaException.class)
+    public void deveLancarExceptionQuandoUmaPalavraNaoForEncontradaPortugues() {
+
+        Dicionario dicionario = new Dicionario();
+        dicionario.adicionarPalavra("Tiger", "Tigre", Dicionario.TipoDicionario.PORTUGUES);
+        dicionario.adicionarPalavra("Paper", "Papel", Dicionario.TipoDicionario.PORTUGUES);
+
+        dicionario.traduzir("Ball", Dicionario.TipoDicionario.PORTUGUES);
 
     }
 
