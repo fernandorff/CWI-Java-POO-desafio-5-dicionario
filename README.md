@@ -4,7 +4,7 @@
 
 Neste exercício vamos modelar um dicionário que armazena palavras em Português e sua respectiva tradução para o Inglês, bem como palavras do Inglês e sua equivalente em Português.
 
-## Classe Dicionario.java
+## Classe dicionario.Dicionario.java
 
 Esta será a classe central da aplicação e deve possuir como públicos **somente** os métodos explicados abaixo:
 
@@ -18,7 +18,7 @@ Por fim, o método deverá possuir a seguinte assinatura:
 ### traduzir()
 Este método receberá como parâmetro a **palavra** pela qual se busca a tradução e o **dicionario** no qual ela deve ser pesquisada.
 
-Quando a palavra não existir no dicionário pesquisado, o sistema deve lançar uma exceção do tipo `unchecked` chamada `PalavraNaoEncontradaException`. 
+Quando a palavra não existir no dicionário pesquisado, o sistema deve lançar uma exceção do tipo `unchecked` chamada `erros.PalavraNaoEncontradaException`. 
 
 O sistema também deve traduzir a palavra sem diferenciar letras maiúsculas e minúsculas.
 
@@ -35,29 +35,31 @@ Devem ser utilizados os recursos do Map, conforme vistos em aula, para cadastrar
 ## Teste de Exemplo
 
 ```java
+import erros.PalavraNaoEncontradaException;
+
 @Test
-public void deveTraduzirCarroELivroDoInglesParaPortuguesEDoPortuguesParaOIngles() {
-    Dicionario dicionario = new Dicionario();
-    dicionario.adicionarPalavra("Carro", "Car", TipoDicionario.INGLES);
-    dicionario.adicionarPalavra("Livro", "Book", TipoDicionario.INGLES);
-    dicionario.adicionarPalavra("Tiger", "Tigre", TipoDicionario.PORTUGUES);
-    dicionario.adicionarPalavra("Paper", "Papel", TipoDicionario.PORTUGUES);
+public void deveTraduzirCarroELivroDoInglesParaPortuguesEDoPortuguesParaOIngles(){
+        dicionario.Dicionario dicionario=new dicionario.Dicionario();
+        dicionario.adicionarPalavra("Carro","Car",TipoDicionario.INGLES);
+        dicionario.adicionarPalavra("Livro","Book",TipoDicionario.INGLES);
+        dicionario.adicionarPalavra("Tiger","Tigre",TipoDicionario.PORTUGUES);
+        dicionario.adicionarPalavra("Paper","Papel",TipoDicionario.PORTUGUES);
 
-    assertEquals("Car", dicionario.traduzir("carro", TipoDicionario.INGLES));
-    assertEquals("Book", dicionario.traduzir("lIVRO", TipoDicionario.INGLES));
+        assertEquals("Car",dicionario.traduzir("carro",TipoDicionario.INGLES));
+        assertEquals("Book",dicionario.traduzir("lIVRO",TipoDicionario.INGLES));
 
-    assertEquals("Papel", dicionario.traduzir("pApEr", TipoDicionario.PORTUGUES));
-    assertEquals("Tigre", dicionario.traduzir("TIGER", TipoDicionario.PORTUGUES));
-}
+        assertEquals("Papel",dicionario.traduzir("pApEr",TipoDicionario.PORTUGUES));
+        assertEquals("Tigre",dicionario.traduzir("TIGER",TipoDicionario.PORTUGUES));
+        }
 
 @Test(expected = PalavraNaoEncontradaException.class)
-public void deveLancarExceptionQuandoUmaPalavraNaoForEncontrada() {
-    Dicionario dicionario = new Dicionario();
-    dicionario.adicionarPalavra("Carro", "Car", TipoDicionario.INGLES);
-    dicionario.adicionarPalavra("Livro", "Book", TipoDicionario.INGLES);
+public void deveLancarExceptionQuandoUmaPalavraNaoForEncontrada(){
+        dicionario.Dicionario dicionario=new dicionario.Dicionario();
+        dicionario.adicionarPalavra("Carro","Car",TipoDicionario.INGLES);
+        dicionario.adicionarPalavra("Livro","Book",TipoDicionario.INGLES);
 
-    String traducao = dicionario.traduzir("Caneta", TipoDicionario.INGLES);
-}
+        String traducao=dicionario.traduzir("Caneta",TipoDicionario.INGLES);
+        }
 ```
 ## Testes Obrigatórios
 

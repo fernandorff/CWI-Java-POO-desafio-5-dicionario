@@ -1,3 +1,5 @@
+import dicionario.Dicionario;
+import erros.PalavraNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Test;
 

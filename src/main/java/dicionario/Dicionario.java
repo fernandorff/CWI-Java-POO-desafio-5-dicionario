@@ -1,17 +1,21 @@
+package dicionario;
+
+import erros.PalavraNaoEncontradaException;
+
 import java.util.HashMap;
 
 import java.util.Map;
 
-public class Dicionario extends PalavraNaoEncontradaException {
+public class Dicionario {
 
     public enum TipoDicionario {
         INGLES,
         PORTUGUES
     }
 
-    public Map<String, String> palavrasPortuguesParaIngles = new HashMap<>();
+    private Map<String, String> palavrasPortuguesParaIngles = new HashMap<>();
 
-    public Map<String, String> palavrasInglesParaPortugues = new HashMap<>();
+    private Map<String, String> palavrasInglesParaPortugues = new HashMap<>();
 
     public void adicionarPalavra(String palavra, String traducao, TipoDicionario dicionario) {
 
@@ -27,19 +31,15 @@ public class Dicionario extends PalavraNaoEncontradaException {
 
     public void checkError(String palavra, TipoDicionario dicionarioDeBusca) {
 
-        if (dicionarioDeBusca == TipoDicionario.INGLES) {
-            if (!palavrasPortuguesParaIngles.containsKey(palavra)) {
+        if (dicionarioDeBusca == TipoDicionario.INGLES && !palavrasPortuguesParaIngles.containsKey(palavra)) {
 
-                throw new PalavraNaoEncontradaException();
+            throw new PalavraNaoEncontradaException();
 
-            }
         }
-        if (dicionarioDeBusca == TipoDicionario.PORTUGUES) {
-            if (!palavrasInglesParaPortugues.containsKey(palavra)) {
+        if (dicionarioDeBusca == TipoDicionario.PORTUGUES && !palavrasInglesParaPortugues.containsKey(palavra)) {
 
-                throw new PalavraNaoEncontradaException();
+            throw new PalavraNaoEncontradaException();
 
-            }
         }
     }
 
