@@ -1,38 +1,60 @@
 import java.util.HashMap;
-import java.util.Locale;
+
 import java.util.Map;
 
-public class Dicionario {
+public class Dicionario extends PalavraNaoEncontradaException {
 
     public enum TipoDicionario {
         INGLES,
         PORTUGUES
     }
 
-String erro = "erro";
+    public Map<String, String> palavrasPortuguesParaIngles = new HashMap<>();
 
-    public Map<String, String> palavraJuntoComSuaTraducao = new HashMap<>();
-    public Map<TipoDicionario, Map> traducaoJuntoComTipoDeDicionario = new HashMap<>();
+    public Map<String, String> palavrasInglesParaPortugues = new HashMap<>();
 
     public void adicionarPalavra(String palavra, String traducao, TipoDicionario dicionario) {
+
         palavra = palavra.toLowerCase();
-        traducao = traducao.toLowerCase();
-        palavraJuntoComSuaTraducao.put(palavra, traducao);
-        traducaoJuntoComTipoDeDicionario.put(dicionario, palavraJuntoComSuaTraducao);
 
+        if (dicionario == TipoDicionario.INGLES) {
+            palavrasPortuguesParaIngles.put(palavra, traducao);
+        } else {
+            palavrasInglesParaPortugues.put(palavra, traducao);
+        }
 
+    }
+
+    public void checkError(String palavra, TipoDicionario dicionarioDeBusca) {
+
+        if (dicionarioDeBusca == TipoDicionario.INGLES) {
+            if (!palavrasPortuguesParaIngles.containsKey(palavra)) {
+
+                throw new PalavraNaoEncontradaException();
+
+            }
+        }
+        if (dicionarioDeBusca == TipoDicionario.PORTUGUES) {
+            if (!palavrasInglesParaPortugues.containsKey(palavra)) {
+
+                throw new PalavraNaoEncontradaException();
+
+            }
+        }
     }
 
     public String traduzir(String palavra, TipoDicionario dicionarioDeBusca) {
+
         palavra = palavra.toLowerCase();
-        if (traducaoJuntoComTipoDeDicionario.containsKey(dicionarioDeBusca) && palavraJuntoComSuaTraducao.containsKey(palavra)) {
-            return (String) (traducaoJuntoComTipoDeDicionario.get(dicionarioDeBusca)).get(palavra);
-            //return traducaoJuntoComTipoDeDicionario.get(dicionarioDeBusca);
+
+        checkError(palavra, dicionarioDeBusca);
+
+        if (dicionarioDeBusca == TipoDicionario.INGLES) {
+            return palavrasPortuguesParaIngles.get(palavra);
         }
-        // throw new RuntimeException();
-        return erro;
+
+        return palavrasInglesParaPortugues.get(palavra);
 
     }
-
 
 }
