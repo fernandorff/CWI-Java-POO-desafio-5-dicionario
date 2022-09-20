@@ -1,3 +1,9 @@
+### Code overview SonarQube
+
+![image](https://user-images.githubusercontent.com/101672271/191235675-be7897f7-a7bd-4800-99f2-94ad974956a8.png)
+
+
+
 # Dicionário
 
 ![dicionario](https://www.xerpa.com.br/blog/wp-content/uploads/sites/2/2019/09/dicionário-de-rh.jpg)
